@@ -13,6 +13,9 @@ type TimerTicker struct {
 }
 
 func NewTimerTicker(duration time.Duration) *TimerTicker {
+	if duration <= 0 {
+		panic("non-positive interval for NewTicker")
+	}
 	return &TimerTicker{
 		startTime: nil,
 		duration:  duration,
@@ -54,4 +57,8 @@ func (t *TimerTicker) GetChan() <-chan time.Time {
 
 func (t *TimerTicker) Stop() {
 	t.ticker.Stop()
+}
+
+func (t *TimerTicker) Reset(duration time.Duration) {
+	t.ticker.Reset(duration)
 }
