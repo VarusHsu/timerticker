@@ -1,4 +1,4 @@
-module timerticker
+module github.com/varushsu/timerticker
 
 go 1.18
 
