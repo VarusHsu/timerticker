@@ -56,9 +56,15 @@ func (t *TimerTicker) GetChan() <-chan time.Time {
 }
 
 func (t *TimerTicker) Stop() {
-	t.ticker.Stop()
+	if t.ticker != nil {
+		t.ticker.Stop()
+	}
 }
 
 func (t *TimerTicker) Reset(duration time.Duration) {
-	t.ticker.Reset(duration)
+	t.duration = duration
+	if t.ticker != nil {
+		t.ticker.Reset(duration)
+	}
+	return
 }
